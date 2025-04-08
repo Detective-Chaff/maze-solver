@@ -1,29 +1,19 @@
+from src.classes.maze import Maze
 from src.classes.cell import Cell
 from src.classes.window import Window
 
 
 def main():
-    print("starting")
-    win = Window(800, 600)
-    #left
-    c = Cell(win)
-    # c.left_wall = False
-    c.draw(50, 50, 100, 100)
-    a = c
-    #center left
-    c = Cell(win)
-    # c.right_wall = False
-    c.draw(50, 100, 100, 150)
-    #center right
-    c = Cell(win)
-    # c.bottom_wall = False
-    c.draw(100, 50, 150, 100)
-    b = c
-    #right
-    c = Cell(win)
-    # c.top_wall = False
-    c.draw(100, 100, 150, 150)
-    a.draw_move(b)
+    num_rows = 12
+    num_cols = 16
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / num_cols
+    cell_size_y = (screen_y - 2 * margin) / num_rows
+    win = Window(screen_x, screen_y)
+
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
 
     win.wait_for_close()
 

@@ -4,7 +4,7 @@ from src.classes.line import Line
 
 class Cell():
 
-    def __init__(self, window):
+    def __init__(self, window=None):
         self.left_wall = True
         self.right_wall = True
         self.top_wall = True
@@ -26,19 +26,31 @@ class Cell():
 
         if self.left_wall:
             line = Line(Point(x1, y1), Point(x1, y2))
-            self._win.draw_line(line, "black")
+            self._win.draw_line(line)
+        else:
+            line = Line(Point(x1, y1), Point(x1, y2))
+            self._win.draw_line(line, "white")
+
         if self.right_wall:
             line = Line(Point(x2, y1), Point(x2, y2))
-            self._win.draw_line(line, "black")
-            # self._win._canvas.create_line(x2, y1, x2, y2)
+            self._win.draw_line(line)
+        else:
+            line = Line(Point(x2, y1), Point(x2, y2))
+            self._win.draw_line(line, "white")
+
         if  self.top_wall:
             line = Line(Point(x1, y1), Point(x2, y1))
-            self._win.draw_line(line, "black")
-            # self._win._canvas.create_line(x1, y1, x2, y1)
+            self._win.draw_line(line)
+        else:
+            line = Line(Point(x1, y1), Point(x2, y1))
+            self._win.draw_line(line, "white")
+
         if self.bottom_wall:
             line = Line(Point(x1, y2), Point(x2, y2))
-            self._win.draw_line(line, "black")
-            # self._win._canvas.create_line(x1, y2, x2, y2)
+            self._win.draw_line(line)
+        else:
+            line = Line(Point(x1, y2), Point(x2, y2))
+            self._win.draw_line(line, "white")
             
     def draw_move(self, to_cell, undo=False):
         colour = "red"
