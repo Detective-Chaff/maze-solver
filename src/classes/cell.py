@@ -9,6 +9,7 @@ class Cell():
         self.right_wall = True
         self.top_wall = True
         self.bottom_wall = True
+        self.visited = False
         self._x1 = None
         self._y1 = None
         self._x2 = None
