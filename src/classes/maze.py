@@ -13,19 +13,16 @@ class Maze():
             ,num_cols
             ,cell_size_x
             ,cell_size_y
-            ,seed=None
-            ,win=None):
+            ,win=None
+            ,seed=None):
         self._x = x1
         self._y = y1
         self._num_rows = num_rows if num_rows > 0 else 1
         self._num_cols = num_cols if num_cols > 0 else 1
         self._cell_size_x = cell_size_x
         self._cell_size_y = cell_size_y
-
-        if seed is not None:
-            self._seed = random.seed(seed)
-        else:
-            self._seed = seed
+        if seed:
+            random.seed(seed)
         self._win = win
         self._cells = []
 
@@ -134,4 +131,55 @@ class Maze():
         for i in range(len(self._cells)):
             for j in range(len(self._cells[i])):
                 self._cells[i][j].visited = False
+    
+    def solve_DFS(self):
+        self.solve_DFS_r(0,0)
+    
+    def solve_DFS_r(self, i, j):
+        self._animate()
+        self._cells[i][j].visited = True
+
+        if i == len(self._cells) - 1 and j == len(self._cells[0]) - 1:
+            print("FINISHED!!!")
+            return True
+
+        # move left
+        if (i > 0 and self._cells[i][j].left_wall is False and self._cells[i - 1][j].visited is False):
+            self._cells[i][j].draw_move(self._cells[i - 1][j])
+            if self.solve_r(i - 1, j):# move to new cell
+                return True
+            else:
+                self._cells[i][j].draw_move(self._cells[i - 1][j], True)
+        #move right
+        if (i < self._num_cols - 1 and self._cells[i][j].right_wall is False and self._cells[i + 1][j].visited is False):
+            self._cells[i][j].draw_move(self._cells[i + 1][j])
+            if self.solve_r(i + 1, j):# move to new cell
+                return True
+            else:
+                self._cells[i][j].draw_move(self._cells[i + 1][j], True)
+        #move down
+        if (j < self._num_rows - 1 and self._cells[i][j].bottom_wall is False and self._cells[i][j + 1].visited is False):
+            self._cells[i][j].draw_move(self._cells[i][j + 1])
+            if self.solve_r(i,j + 1):# move to new cell
+                return True
+            else:
+                self._cells[i][j].draw_move(self._cells[i][j + 1], True)
+        # move up
+        if (j > 0 and self._cells[i][j].top_wall is False and self._cells[i][j - 1].visited is False):
+            self._cells[i][j].draw_move(self._cells[i][j - 1])
+            if self.solve_r(i,j - 1):# move to new cell
+                return True
+            else:
+                self._cells[i][j].draw_move(self._cells[i][j - 1], True)
+        return False
+
+    def solve_BFS(self):
+        self.solve_BFS_r(0,0)
+
+    def solve_BFS_r(self, i, j):
+        self._animate()
+        self._cells[i][j].visited = True
+
+
+
 
