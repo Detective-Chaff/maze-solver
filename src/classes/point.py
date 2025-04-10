@@ -1,4 +1,3 @@
-
 class Point():
     def __init__(self, x, y):
         self._x = x # horizontal (0 is left of window)
