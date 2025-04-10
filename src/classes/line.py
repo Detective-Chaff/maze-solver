@@ -1,6 +1,3 @@
-# from typing import TYPE_CHECKING
-# if TYPE_CHECKING:
-#     from tkinter import Canvas
 
 class Line():
     def __init__(self, point1, point2):
