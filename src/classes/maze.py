@@ -1,4 +1,3 @@
-
 import random
 import time
 from src.classes.cell import Cell
