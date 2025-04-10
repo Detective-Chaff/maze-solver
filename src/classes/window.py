@@ -1,5 +1,4 @@
 from tkinter import Tk, BOTH, Canvas
-
 from src.classes import line
 
 '''
