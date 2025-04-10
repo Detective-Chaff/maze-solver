@@ -1,7 +1,6 @@
 from src.classes.point import Point
 from src.classes.line import Line
 
-
 class Cell():
 
     def __init__(self, window=None):
