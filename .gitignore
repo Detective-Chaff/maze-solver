@@ -1,0 +1,3 @@
+.vscode
+src/classes/__pycache__/
+tests/__pycache__/
